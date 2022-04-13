@@ -12,6 +12,7 @@ describe("BMI Calculator", () => {
       request("http://localhost:3000", function (error, response, body) {
         expect(response.statusCode).to.equal(200);
         expect(response.body).to.not.be.empty;
+        expect(response.body).to.be("object");
         expect(response.body.error).to.eq(false);
         expect(response.body.data).to.not.be.empty;
       });
