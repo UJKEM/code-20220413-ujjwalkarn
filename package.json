@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha --require babel-register test/*.js --exit",
-    "dev": "nodemon --exec babel-node --presets babel-preset-env ./index.js",
+    "dev": "nodemon --exec npx babel-node --presets babel-preset-env ./index.js",
     "start": "node index.js"
   },
   "keywords": [],
@@ -23,6 +23,7 @@
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "chai-http": "^4.3.0",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "request": "^2.88.2"
   }
 }

@@ -21,4 +21,4 @@ app.listen(port, (err) => {
   console.log(`Started listening to the port ${port}`);
 });
 
-export default app;
+module.exports = app;
