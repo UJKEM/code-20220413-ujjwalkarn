@@ -12,7 +12,6 @@ describe("BMI Calculator", () => {
       request("http://localhost:3000", function (error, response, body) {
         expect(response.statusCode).to.equal(200);
         expect(response.body).to.not.be.empty;
-        expect(response.body).to.be("object");
         expect(response.body.error).to.eq(false);
         expect(response.body.data).to.not.be.empty;
       });
@@ -32,25 +31,24 @@ describe("BMI Calculator", () => {
       );
       done();
     });
-
-    describe("/POST Calculate BMI on body parameters", () => {
-      it("it should add a new human BMI record", (done) => {
-        let human = { Gender: "Female", HeightCm: 167, WeightKg: 82 };
-        request(
-          "http://localhost:3000",
-          {
-            method: "POST",
-            body: JSON.stringify(human),
-          },
-          (error, response, body) => {
-            expect(response.statusCode).to.equal(201);
-            expect(response.body).to.not.be.empty;
-            expect(response.body.error).to.eq(false);
-            expect(response.body.data).to.not.be.empty;
-          }
-        );
-        done();
-      });
+  });
+  describe("POST / Calculate BMI on body parameters", () => {
+    it("it should add a new human BMI record", (done) => {
+      let human = { Gender: "Female", HeightCm: 167, WeightKg: 82 };
+      request(
+        "http://localhost:3000",
+        {
+          method: "POST",
+          body: JSON.stringify(human),
+        },
+        (error, response, body) => {
+          expect(response.statusCode).to.equal(201);
+          expect(response.body).to.not.be.empty;
+          expect(response.body.error).to.eq(false);
+          expect(response.body.data).to.not.be.empty;
+        }
+      );
+      done();
     });
   });
 });
