@@ -111,3 +111,5 @@ router.post("/add", (req, res) => {
   client.setEx(data + "", 300, JSON.stringify(data));
   return res.status(201).send({ error: false, data });
 });
+
+module.exports = router;
