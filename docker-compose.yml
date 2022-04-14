@@ -10,7 +10,8 @@ services:
     image: "alpine:node"
     build: .
     volumes: 
-      - "./app:/usr/app"
+      - "/app/node_modules"
+      - .:/app
     depends_on:
      - redis-server
     ports:
