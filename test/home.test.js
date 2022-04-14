@@ -11,7 +11,6 @@ describe("BMI Calculator", () => {
     // Test to get all human record
     it("should get all human record", (done) => {
       request(`http://localhost:${port}`, function (error, response, body) {
-        console.log(response.body);
         expect(response.statusCode).to.equal(200);
         expect(body).to.not.be.empty;
         expect(body.error).to.eq(false);
@@ -24,8 +23,6 @@ describe("BMI Calculator", () => {
       request(
         `http://localhost:${port}/overweight`,
         function (error, response, body) {
-          console.log(response.body);
-
           expect(response.statusCode).to.equal(200);
           expect(body).to.not.be.empty;
           expect(body.error).to.eq(false);
@@ -46,8 +43,6 @@ describe("BMI Calculator", () => {
           body: JSON.stringify(human),
         },
         (error, response, body) => {
-          console.log(response.body);
-
           expect(response.statusCode).to.equal(201);
           expect(body).to.not.be.empty;
           expect(body.error).to.eq(false);
