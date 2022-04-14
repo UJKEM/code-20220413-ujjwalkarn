@@ -1,12 +1,15 @@
 const express = require("express");
 const router = express.Router();
 const data = require("../../Data");
-const redis = require("redis");
-const client = redis.createClient(6379);
+const { createClient } = require("redis");
 
-client.on("error", (error) => {
-  console.error(error);
-});
+(async () => {
+  const client = createClient();
+
+  client.on("error", (err) => console.log("Redis Client Error", err));
+
+  await client.connect();
+})();
 
 router.get("/", (req, res) => {
   try {
@@ -17,7 +20,7 @@ router.get("/", (req, res) => {
           data: JSON.parse(result),
         });
       } else {
-        client.setEx(data + "", 300, JSON.stringify(data));
+        client.setEx(data + "", 100, JSON.stringify(data));
         return res.status(200).send({ error: false, data });
       }
     });
@@ -44,7 +47,7 @@ router.get("/overweight", (req, res) => {
                   owArray.overweight.push(v);
                 }
               });
-              client.setEx("Overweight", 300, JSON.stringify(owArray));
+              client.setEx("Overweight", 100, JSON.stringify(owArray));
               return res
                 .status(200)
                 .send({ error: false, data: owArray, TotalOverweight: count });
@@ -108,7 +111,7 @@ router.post("/add", (req, res) => {
     HealthRisk: healthRisk,
   });
 
-  client.setEx(data + "", 300, JSON.stringify(data));
+  client.setEx(data + "", 100, JSON.stringify(data));
   return res.status(201).send({ error: false, data });
 });
 
