@@ -1,6 +1,7 @@
 const { expect } = require("chai");
 const chai = require("chai");
 const request = require("request");
+const port = process.env.PORT || 3000;
 
 // Configure chai
 chai.should();
@@ -9,7 +10,7 @@ describe("BMI Calculator", () => {
   describe("GET /", () => {
     // Test to get all human record
     it("should get all human record", (done) => {
-      request("http://localhost:3000", function (error, response, body) {
+      request(`http://localhost:${port}`, function (error, response, body) {
         console.log(response.body);
         expect(response.statusCode).to.equal(200);
         expect(response.body).to.not.be.empty;
@@ -21,7 +22,7 @@ describe("BMI Calculator", () => {
 
     it("should get a overweight human record", (done) => {
       request(
-        "http://localhost:3000/overweight",
+        `http://localhost:${port}/overweight`,
         function (error, response, body) {
           console.log(response.body);
 
@@ -39,7 +40,7 @@ describe("BMI Calculator", () => {
     it("it should add a new human BMI record", (done) => {
       let human = { Gender: "Female", HeightCm: 167, WeightKg: 82 };
       request(
-        "http://localhost:3000",
+        `http://localhost:${port}`,
         {
           method: "POST",
           body: JSON.stringify(human),
