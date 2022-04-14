@@ -2,16 +2,16 @@
 FROM node:alpine
 
 #Specify a working directory
-WORKDIR /usr/app
+WORKDIR /app
 
 #Copy the dependencies file
-COPY ./package.json ./
+COPY package.json .
 
 #Install dependencies
 RUN npm install 
 
 #Copy remaining files
-COPY ./ ./
+COPY . .
 
 EXPOSE 3000
 
