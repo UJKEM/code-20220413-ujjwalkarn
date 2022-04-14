@@ -6,8 +6,7 @@
   "scripts": {
     "test": "mocha --require babel-register test/*.js --exit",
     "dev": "nodemon --exec npx babel-node --presets babel-preset-env ./index.js",
-    "start": "node index.js",
-    "build": "npm run build"
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",
