@@ -12,7 +12,7 @@ services:
     volumes: 
       - "./app:/usr/app"
     depends_on:
-     - redis
+     - redis-server
     ports:
       - "3000:3000"
     restart: on-failure
