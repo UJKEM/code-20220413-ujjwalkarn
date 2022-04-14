@@ -4,7 +4,7 @@ const data = require("../../Data");
 const { createClient } = require("redis");
 
 (async () => {
-  const client = createClient({ url: "redis://host.docker.internal:6379", legacyMode: true
+  const client = createClient({ url: "redis://host.docker.internal:6379", legacyMode: true, port: 6379
  });
 
   client.on("error", (err) => console.log("Redis Client Error", err));
