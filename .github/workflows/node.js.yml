@@ -23,11 +23,14 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - name: Start Redis
-      uses: supercharge/redis-github-action@1.4.0
-      with:
+    - name: Setup redis
+      uses: supercharge/redis-github-action@1.2.0
+      with: 
         redis-version: ${{ matrix.redis-version }}
 
-    - run: npm ci
+    - name: Install redis cli # so we can test the server
+      run: sudo apt-get install -y redis-server
+
+    - run: npm install
     - run: npm run build --if-present
     - run: npm test
