@@ -4,7 +4,8 @@ const data = require("../../Data");
 const { createClient } = require("redis");
 
 (async () => {
-  const client = createClient({ host: "redis-server" });
+  const client = createClient({ host: "redis-server", legacyMode: true
+ });
 
   client.on("error", (err) => console.log("Redis Client Error", err));
 
